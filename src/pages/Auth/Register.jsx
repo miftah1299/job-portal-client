@@ -1,10 +1,33 @@
 import Lottie from "lottie-react";
-import React from "react";
+import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import registerAnimation from "../../assets/lottie/register.json";
 
 const Register = () => {
+    const [error, setError] = useState({});
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+
+    const handleRegister = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        const name = form.name.value;
+        const photo = form.photo.value;
+
+        if (!passwordPattern.test(password)) {
+            setError({
+                password:
+                    "Password must be at least 6 characters long and contain at least one uppercase and one lowercase letter.",
+            });
+            return;
+        }
+
+        console.log(email, password, name, photo);
+    };
+
     return (
         <div className="min-h-screen flex flex-col lg:flex-row-reverse justify-center items-center">
             <div className="lg:w-1/3">
@@ -12,7 +35,7 @@ const Register = () => {
             </div>
 
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
-                <form className="card-body">
+                <form onSubmit={handleRegister} className="card-body">
                     <div className="form-control">
                         <h3 className="text-2xl text-textPrimary font-semibold text-center pb-4">
                             Register Now!
@@ -81,11 +104,11 @@ const Register = () => {
                             className="absolute inset-y-14 right-0 pr-3 flex items-center cursor-pointer"
                             // onClick={togglePasswordVisibility}
                         ></div>
-                        {/* {error.password && (
+                        {error.password && (
                             <p className="text-primary text-sm mt-2">
                                 {error.password}
                             </p>
-                        )} */}
+                        )}
                     </div>
 
                     <div className="form-control mt-6 space-y-2">
