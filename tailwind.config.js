@@ -4,13 +4,11 @@ export default {
     theme: {
         extend: {
             colors: {
-                colors: {
-                    primary: "#E63946", // Crimson Red
-                    secondary: "#F1FAEE", // Soft Mint
-                    accent: "#457B9D", // Steel Blue
-                    background: "#FAFAFA", // Soft White
-                    text: "#1D3557", // Navy Blue
-                },
+                primary: "#E63946", // Crimson Red
+                secondary: "#F1FAEE", // Soft Mint
+                accent: "#457B9D", // Steel Blue
+                background: "#FAFAFA", // Soft White
+                textPrimary: "#1D3557", // Navy Blue
             },
         },
     },
