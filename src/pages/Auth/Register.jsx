@@ -67,11 +67,11 @@ const Register = () => {
                             className="input input-bordered"
                             required
                         />
-                        {/* {error.name && (
+                        {error.name && (
                             <label className="label text-primary text-sm">
                                 {error.name}
                             </label>
-                        )} */}
+                        )}
 
                         {/* photo */}
                         <label className="label">
@@ -116,7 +116,7 @@ const Register = () => {
                         />
                         <div
                             className="absolute inset-y-14 right-0 pr-3 flex items-center cursor-pointer"
-                            // onClick={togglePasswordVisibility}
+                        // onClick={togglePasswordVisibility}
                         ></div>
                         {error.password && (
                             <p className="text-primary text-sm mt-2">
