@@ -1,10 +1,13 @@
 import Lottie from "lottie-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import registerAnimation from "../../assets/lottie/register.json";
+import AuthContext from "../../context/AuthContext";
 
 const Register = () => {
+    const { createUser } = useContext(AuthContext);
+
     const [error, setError] = useState({});
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
@@ -17,6 +20,7 @@ const Register = () => {
         const name = form.name.value;
         const photo = form.photo.value;
 
+        // validate password
         if (!passwordPattern.test(password)) {
             setError({
                 password:
@@ -24,8 +28,18 @@ const Register = () => {
             });
             return;
         }
+        // console.log(email, password, name, photo);
 
-        console.log(email, password, name, photo);
+        createUser(email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                // console.log(user);
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+            });
     };
 
     return (
