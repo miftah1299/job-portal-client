@@ -14,11 +14,11 @@ const Register = () => {
     const handleRegister = (e) => {
         e.preventDefault();
 
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        const name = form.name.value;
-        const photo = form.photo.value;
+        const formData = e.target;
+        const email = formData.email.value;
+        const password = formData.password.value;
+        const name = formData.name.value;
+        const photo = formData.photo.value;
 
         // validate password
         if (!passwordPattern.test(password)) {

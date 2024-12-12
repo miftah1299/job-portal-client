@@ -62,7 +62,7 @@ const Navbar = () => {
                 >
                     Register
                 </Link>
-                <Link to="/auth/login" className="btn btn-outline text-primary">
+                <Link to="/auth/signin" className="btn btn-outline text-primary">
                     Login
                 </Link>
             </div>
