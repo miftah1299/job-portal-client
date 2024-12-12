@@ -48,16 +48,23 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-2xl text-textPrimary">
+                <Link to="/" className="text-2xl text-textPrimary font-bold">
                     JobPortal
-                </a>
+                </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
             <div className="navbar-end space-x-4">
-                <Link className="btn btn-outline text-primary">Register</Link>
-                <Link className="btn btn-outline text-primary">Sign in</Link>
+                <Link
+                    to="/auth/register"
+                    className="btn btn-outline text-primary"
+                >
+                    Register
+                </Link>
+                <Link to="/auth/login" className="btn btn-outline text-primary">
+                    Login
+                </Link>
             </div>
         </div>
     );
