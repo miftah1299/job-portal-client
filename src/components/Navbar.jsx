@@ -1,19 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Navbar = () => {
+    const { user } = useContext(AuthContext);
+
     const links = (
         <>
             <li>
-                <Link to="/" className="btn btn-ghost">
+                <NavLink to="/" className="">
                     Home
-                </Link>
-                <Link to="/about" className="btn btn-ghost">
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/about" className="">
                     About
-                </Link>
-                <Link to="/contact" className="btn btn-ghost">
+                </NavLink>
+            </li>
+            <li>
+                <NavLink to="/contact" className="">
                     Contact
-                </Link>
+                </NavLink>
             </li>
         </>
     );
@@ -55,16 +62,43 @@ const Navbar = () => {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
-            <div className="navbar-end space-x-4">
-                <Link
-                    to="/auth/register"
-                    className="btn btn-outline text-primary"
-                >
-                    Register
-                </Link>
-                <Link to="/auth/signin" className="btn btn-outline text-primary">
-                    Login
-                </Link>
+            <div className="navbar-end">
+                {user ? (
+                    <div className="flex space-x-4">
+                        <div className="flex flex-col items-center">
+                            <img
+                                src={
+                                    user?.photoURL ||
+                                    "https://i.ibb.co.com/P1n2z8D/profile-icon-design-free-vector.jpg"
+                                }
+                                alt="user"
+                                className="w-10 h-10 rounded-full"
+                            />
+                            <p className="text-sm">{user?.displayName}</p>
+                        </div>
+                        <Link
+                            to="/logout"
+                            className="btn btn-outline text-primary"
+                        >
+                            Logout
+                        </Link>
+                    </div>
+                ) : (
+                    <div className="space-x-4">
+                        <Link
+                            to="/auth/register"
+                            className="btn btn-outline text-primary"
+                        >
+                            Register
+                        </Link>
+                        <Link
+                            to="/auth/signin"
+                            className="btn btn-outline text-primary"
+                        >
+                            Login
+                        </Link>
+                    </div>
+                )}
             </div>
         </div>
     );

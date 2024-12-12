@@ -4,18 +4,35 @@ import AuthContext from "../../context/AuthContext";
 import Lottie from "lottie-react";
 import signinAnimation from "../../assets/lottie/signin.json";
 import { FcGoogle } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 const Signin = () => {
+    const { signinUser } = useContext(AuthContext);
+    const [error, setError] = useState(null);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const handleSignin = (e) => {
         e.preventDefault();
 
         const formData = e.target;
         const email = formData.email.value;
         const password = formData.password.value;
-
         // console.log(email, password);
-    };
 
+        signinUser(email, password)
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                console.log(user);
+                navigate(location?.state ? location.state : "/");
+            })
+            .catch((err) => {
+                setError({ ...error, login: err.code });
+                toast.error(err.message);
+            });
+    };
 
     return (
         <div className="min-h-screen flex flex-col lg:flex-row-reverse justify-center items-center">
@@ -58,9 +75,20 @@ const Signin = () => {
                             className="input input-bordered"
                             required
                         />
-                        <div className="absolute inset-y-14 right-0 pr-3 flex items-center cursor-pointer"
-                        // onClick={togglePasswordVisibility}
-                        ></div>
+                        {error?.login && (
+                            <label className="label text-red-500 text-sm">
+                                {error.login}
+                            </label>
+                        )}
+
+                        <label className="label">
+                            <Link
+                                to="/auth/forgot-password"
+                                className="label-text-alt link link-hover text-orange-500"
+                            >
+                                Forgot password?
+                            </Link>
+                        </label>
                     </div>
 
                     <div className="form-control mt-6 space-y-2">
@@ -69,9 +97,7 @@ const Signin = () => {
                         </button>
 
                         {/* sign up with google */}
-                        <button
-                            className="btn btn-outline px-6 py-2 rounded-full"
-                        >
+                        <button className="btn btn-outline px-6 py-2 rounded-full">
                             <FcGoogle size={24} />
                             Sign In with Google
                         </button>

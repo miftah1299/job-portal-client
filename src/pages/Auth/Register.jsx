@@ -4,6 +4,7 @@ import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import registerAnimation from "../../assets/lottie/register.json";
 import AuthContext from "../../context/AuthContext";
+import toast from "react-hot-toast";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -36,9 +37,12 @@ const Register = () => {
                 // console.log(user);
             })
             .catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode, errorMessage);
+                // ..
+                // console.log(errorCode, errorMessage);
+                setError({ ...error, general: errorMessage });
+                toast.error(errorMessage);
             });
     };
 
@@ -116,7 +120,7 @@ const Register = () => {
                         />
                         <div
                             className="absolute inset-y-14 right-0 pr-3 flex items-center cursor-pointer"
-                        // onClick={togglePasswordVisibility}
+                            // onClick={togglePasswordVisibility}
                         ></div>
                         {error.password && (
                             <p className="text-primary text-sm mt-2">
