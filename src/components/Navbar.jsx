@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { CgArrowTopRight } from "react-icons/cg";
+import logo from "../assets/job-portal-logo.png";
 
 const Navbar = () => {
     const { user, signoutUser } = useContext(AuthContext);
@@ -75,7 +75,11 @@ const Navbar = () => {
                         {links}
                     </ul>
                 </div>
-                <Link to="/" className="text-2xl text-textPrimary font-bold">
+                <Link
+                    to="/"
+                    className="text-2xl text-textPrimary font-bold flex items-center gap-2"
+                >
+                    <img className="w-10" src={logo} alt="logo" />
                     JobPortal
                 </Link>
             </div>
