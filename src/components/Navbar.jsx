@@ -1,9 +1,20 @@
 import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { CgArrowTopRight } from "react-icons/cg";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, signoutUser } = useContext(AuthContext);
+
+    const handleSignout = () => {
+        signoutUser()
+            .then(() => {
+                console.log("Signed out successfully");
+            })
+            .catch((error) => {
+                console.log(error.message);
+            });
+    };
 
     const links = (
         <>
@@ -72,42 +83,46 @@ const Navbar = () => {
                 <ul className="menu menu-horizontal px-1">{links}</ul>
             </div>
             <div className="navbar-end">
-                {user ? (
-                    <div className="flex space-x-4">
-                        <div className="flex flex-col items-center">
-                            <img
-                                src={
-                                    user?.photoURL ||
-                                    "https://i.ibb.co.com/P1n2z8D/profile-icon-design-free-vector.jpg"
-                                }
-                                alt="user"
-                                className="w-10 h-10 rounded-full"
-                            />
-                            <p className="text-sm">{user?.displayName}</p>
+                <div>
+                    {user && user?.email ? (
+                        <div className=" flex items-center gap-4">
+                            <div className="flex flex-col items-center">
+                                <img
+                                    src={
+                                        user?.photoURL ||
+                                        "https://i.ibb.co.com/P1n2z8D/profile-icon-design-free-vector.jpg"
+                                    }
+                                    alt="user"
+                                    className="w-10 h-10 rounded-full"
+                                />
+                                <p className="text-sm">{user?.displayName}</p>
+                            </div>
+
+                            <button
+                                onClick={handleSignout}
+                                className="btn btn-outline text-primary"
+                            >
+                                Log Out
+                            </button>
                         </div>
-                        <Link
-                            to="/logout"
-                            className="btn btn-outline text-primary"
-                        >
-                            Logout
-                        </Link>
-                    </div>
-                ) : (
-                    <div className="space-x-4">
-                        <Link
-                            to="/auth/register"
-                            className="btn btn-outline text-primary"
-                        >
-                            Register
-                        </Link>
-                        <Link
-                            to="/auth/signin"
-                            className="btn btn-outline text-primary"
-                        >
-                            Login
-                        </Link>
-                    </div>
-                )}
+                    ) : (
+                        <div className=" flex items-center gap-4">
+                            <Link
+                                to="/auth/register"
+                                className="btn btn-outline text-primary"
+                            >
+                                Register
+                            </Link>
+
+                            <Link
+                                to="/auth/signin"
+                                className="btn btn-outline text-primary"
+                            >
+                                Sign In
+                            </Link>
+                        </div>
+                    )}
+                </div>
             </div>
         </div>
     );
