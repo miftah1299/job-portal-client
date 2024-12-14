@@ -7,7 +7,7 @@ export default {
                 primaryDark: "#1D3557", // Navy Blue
                 primaryLight: "#457B9D", // Steel Blue
                 secondary: "#F1FAEE", // Soft Mint
-                primary: "#E63946", // Crimson Red
+                accent: "#E63946", // Crimson Red
                 background: "#FAFAFA", // Soft White
             },
         },
