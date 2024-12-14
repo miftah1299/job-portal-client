@@ -43,7 +43,7 @@ const Signin = () => {
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
                 <form onSubmit={handleSignin} className="card-body">
                     <div className="form-control">
-                        <h3 className="text-2xl text-textPrimary font-semibold text-center pb-4">
+                        <h3 className="text-2xl text-accentDark font-semibold text-center pb-4">
                             Sign In Now!
                         </h3>
 
@@ -107,7 +107,7 @@ const Signin = () => {
                     Already Have An Account?{" "}
                     <Link
                         to="/auth/register"
-                        className="text-primary font-semibold hover:underline"
+                        className="text-accent font-semibold hover:underline"
                     >
                         Register
                     </Link>
