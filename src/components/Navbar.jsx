@@ -7,21 +7,30 @@ const Navbar = () => {
 
     const links = (
         <>
-            <li>
-                <NavLink to="/" className="">
-                    Home
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/about" className="">
-                    About
-                </NavLink>
-            </li>
-            <li>
-                <NavLink to="/contact" className="">
-                    Contact
-                </NavLink>
-            </li>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                }
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/about"
+                className={({ isActive }) =>
+                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                }
+            >
+                About
+            </NavLink>
+            <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                }
+            >
+                Contact
+            </NavLink>
         </>
     );
     return (
