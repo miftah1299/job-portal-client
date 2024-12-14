@@ -4,7 +4,7 @@ import HotJobs from "./HotJobs";
 
 const Home = () => {
     return (
-        <div>
+        <div className="bg-background">
             <Banner />
 
             <HotJobs />

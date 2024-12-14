@@ -1,4 +1,7 @@
 import React from "react";
+import { GoClock } from "react-icons/go";
+import { GrLocation } from "react-icons/gr";
+import { TfiBag } from "react-icons/tfi";
 
 const JobCard = ({ job }) => {
     const {
@@ -7,18 +10,16 @@ const JobCard = ({ job }) => {
         company_logo,
         location,
         jobType,
-        category,
         applicationDeadline,
         salaryRange,
         description,
         requirements,
-        responsibilities,
     } = job;
 
     return (
-        <div className="card w-96 h-96 bg-base-200 shadow-xl border rounded-lg">
-            <div className="p-6 flex flex-col justify-between h-full">
-                <div className="flex items-center justify-between mb-4">
+        <div className="card h-96 bg-base-200 shadow-lg border rounded-lg">
+            <div className="p-6 flex flex-col justify-between h-full space-y-4">
+                <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <div className="avatar">
                             <div className="w-10 h-10 flex items-center justify-center">
@@ -27,7 +28,10 @@ const JobCard = ({ job }) => {
                         </div>
                         <div>
                             <h2 className="font-semibold text-lg">{company}</h2>
-                            <p className="text-sm text-gray-500">{location}</p>
+                            <p className="text-sm text-gray-500 flex items-center gap-1">
+                                <GrLocation />
+                                {location}
+                            </p>
                         </div>
                     </div>
                     <div>
@@ -35,28 +39,35 @@ const JobCard = ({ job }) => {
                     </div>
                 </div>
 
-                <div className="flex-grow">
-                    <h3 className="text-xl font-semibold mb-2">{title}</h3>
-                    <p className="text-sm text-gray-500 mb-2 flex items-center gap-1">
-                        <span>📅 {jobType}</span>
-                        <span>•</span>
-                        <span>⏱ 4 minutes ago</span>
+                <div className="space-y-2">
+                    <h3 className="text-xl font-semibold">{title}</h3>
+                    <p className="text-sm text-gray-500 flex items-center gap-5">
+                        <span className="flex gap-1 items-center">
+                            <TfiBag />
+                            {jobType}
+                        </span>
+                        <span className="flex gap-1 items-center">
+                            <GoClock />4 minutes ago
+                        </span>
                     </p>
 
-                    <p class="text-sm text-gray-600 mb-4">{description}</p>
+                    <p class="text-sm text-gray-600">{description}</p>
 
-                    <div class="flex gap-2 mb-4">
-                        <span class="badge badge-outline">Adobe XD</span>
-                        <span class="badge badge-outline">Figma</span>
-                        <span class="badge badge-outline">Photoshop</span>
+                    <div class="flex flex-wrap gap-2">
+                        {requirements.map((req) => (
+                            <p class="badge badge-outline hover:text-primaryLight">
+                                {req}
+                            </p>
+                        ))}
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center">
-                    <p class="text-2xl font-bold text-blue-500">
-                        $500<span class="text-base font-normal">/Hour</span>
+                <div class="flex justify-between items-center gap-2">
+                    <p class="font-medium text-primaryLight">
+                        Salary: {salaryRange.min} - {salaryRange.max}{" "}
+                        {salaryRange.currency}
                     </p>
-                    <button class="btn btn-sm bg-gray-300 text-blue-500 rounded-lg">
+                    <button class="btn btn-sm bg-gray-300 text-primaryLight rounded-lg">
                         Apply Now
                     </button>
                 </div>
