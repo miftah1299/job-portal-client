@@ -55,7 +55,7 @@ const Register = () => {
             <div className="card bg-base-100 w-full max-w-lg shrink-0 rounded-none p-10">
                 <form onSubmit={handleRegister} className="card-body">
                     <div className="form-control">
-                        <h3 className="text-2xl text-textPrimary font-semibold text-center pb-4">
+                        <h3 className="text-2xl text-accentDark font-semibold text-center pb-4">
                             Register Now!
                         </h3>
                         {/* name */}
@@ -72,7 +72,7 @@ const Register = () => {
                             required
                         />
                         {error.name && (
-                            <label className="label text-primary text-sm">
+                            <label className="label text-accent text-sm">
                                 {error.name}
                             </label>
                         )}
@@ -123,7 +123,7 @@ const Register = () => {
                             // onClick={togglePasswordVisibility}
                         ></div>
                         {error.password && (
-                            <p className="text-primary text-sm mt-2">
+                            <p className="text-accent text-sm mt-2">
                                 {error.password}
                             </p>
                         )}
@@ -148,7 +148,7 @@ const Register = () => {
                     Already Have An Account?{" "}
                     <Link
                         to="/auth/signin"
-                        className="text-primary font-semibold hover:underline"
+                        className="text-accent font-semibold hover:underline"
                     >
                         Sign In
                     </Link>

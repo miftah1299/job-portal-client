@@ -21,7 +21,7 @@ const Navbar = () => {
             <NavLink
                 to="/"
                 className={({ isActive }) =>
-                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                    `tab ${isActive ? "text-accent" : "hover:text-accent"}`
                 }
             >
                 Home
@@ -29,7 +29,7 @@ const Navbar = () => {
             <NavLink
                 to="/about"
                 className={({ isActive }) =>
-                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                    `tab ${isActive ? "text-accent" : "hover:text-accent"}`
                 }
             >
                 About
@@ -37,7 +37,7 @@ const Navbar = () => {
             <NavLink
                 to="/contact"
                 className={({ isActive }) =>
-                    `tab ${isActive ? "text-primary" : "hover:text-primary"}`
+                    `tab ${isActive ? "text-accent" : "hover:text-accent"}`
                 }
             >
                 Contact
@@ -77,7 +77,7 @@ const Navbar = () => {
                 </div>
                 <Link
                     to="/"
-                    className="text-2xl text-textPrimary font-bold flex items-center gap-2"
+                    className="text-2xl text-accentDark font-bold flex items-center gap-2"
                 >
                     <img className="w-10" src={logo} alt="logo" />
                     JobPortal
@@ -104,7 +104,7 @@ const Navbar = () => {
 
                             <button
                                 onClick={handleSignout}
-                                className="btn btn-outline text-primary"
+                                className="btn btn-outline text-accent"
                             >
                                 Log Out
                             </button>
@@ -113,14 +113,14 @@ const Navbar = () => {
                         <div className=" flex items-center gap-4">
                             <Link
                                 to="/auth/register"
-                                className="btn btn-outline text-primary"
+                                className="btn btn-outline text-accent"
                             >
                                 Register
                             </Link>
 
                             <Link
                                 to="/auth/signin"
-                                className="btn btn-outline text-primary"
+                                className="btn btn-outline text-accent"
                             >
                                 Sign In
                             </Link>
