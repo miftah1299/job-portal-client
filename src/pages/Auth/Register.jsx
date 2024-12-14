@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import registerAnimation from "../../assets/lottie/register.json";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -133,15 +134,8 @@ const Register = () => {
                         <button className="btn btn-outline bg-secondary px-6 py-2 rounded-full">
                             Register
                         </button>
-
                         {/* sign up with google */}
-                        <button
-                            // onClick={handleGoogleSignIn}
-                            className="btn btn-outline px-6 py-2 rounded-full"
-                        >
-                            <FcGoogle size={24} />
-                            Sign Up with Google
-                        </button>
+                        <GoogleLogin />
                     </div>
                 </form>
                 <p className="text-center">
@@ -150,7 +144,7 @@ const Register = () => {
                         to="/auth/signin"
                         className="text-accent font-semibold hover:underline"
                     >
-                        Sign In
+                        Sign in
                     </Link>
                 </p>
             </div>

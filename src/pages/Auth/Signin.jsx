@@ -5,6 +5,7 @@ import Lottie from "lottie-react";
 import signinAnimation from "../../assets/lottie/signin.json";
 import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Signin = () => {
     const { signinUser } = useContext(AuthContext);
@@ -97,10 +98,7 @@ const Signin = () => {
                         </button>
 
                         {/* sign up with google */}
-                        <button className="btn btn-outline px-6 py-2 rounded-full">
-                            <FcGoogle size={24} />
-                            Sign In with Google
-                        </button>
+                        <GoogleLogin />
                     </div>
                 </form>
                 <p className="text-center">
