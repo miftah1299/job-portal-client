@@ -3,10 +3,11 @@ import {
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     signInWithEmailAndPassword,
+    signInWithPopup,
     signOut,
 } from "firebase/auth";
-import auth from "../firebase/firebaseConfig";
 import { useEffect, useState } from "react";
+import { auth, googleProvider } from "../firebase/firebaseConfig";
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
@@ -20,6 +21,11 @@ const AuthProvider = ({ children }) => {
     const signinUser = (email, password) => {
         setLoading(true);
         return signInWithEmailAndPassword(auth, email, password);
+    };
+
+    const signinWithGoogle = () => {
+        setLoading(true);
+        return signInWithPopup(auth, googleProvider);
     };
 
     const signoutUser = () => {
@@ -40,6 +46,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         signinUser,
+        signinWithGoogle,
         signoutUser,
     };
 
