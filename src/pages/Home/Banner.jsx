@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import team1 from "../assets/team1.jpg";
-import team2 from "../assets/team2.jpg";
+import team1 from "../../assets/team1.jpg";
+import team2 from "../../assets/team2.jpg";
 
 const Banner = () => {
     return (

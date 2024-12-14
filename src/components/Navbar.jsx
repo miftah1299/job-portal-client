@@ -44,6 +44,7 @@ const Navbar = () => {
             </NavLink>
         </>
     );
+
     return (
         <div className="navbar bg-background">
             <div className="navbar-start">
