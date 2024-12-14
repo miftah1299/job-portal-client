@@ -29,7 +29,7 @@ const Footer = () => {
                 <aside className="grid-flow-col items-center">
                     <img className="w-10" src={logo} alt="logo" />
                     <p>
-                        JobPortal
+                        JobPortal Ltd.
                         <br />
                         Copyright &copy; {new Date().getFullYear()} - All right
                         reserved by{" "}
