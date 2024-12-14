@@ -1,13 +1,13 @@
 import React from "react";
-import Banner from "../../components/Banner";
-import { Outlet } from "react-router-dom";
+import Banner from "./Banner";
+import HotJobs from "./HotJobs";
 
 const Home = () => {
     return (
         <div>
             <Banner />
 
-            <Outlet />
+            <HotJobs />
         </div>
     );
 };
