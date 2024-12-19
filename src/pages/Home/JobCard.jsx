@@ -54,13 +54,13 @@ const JobCard = ({ job }) => {
                         </span>
                     </p>
 
-                    <p class="text-sm text-gray-600">{description}</p>
+                    <p className="text-sm text-gray-600">{description}</p>
 
-                    <div class="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2">
                         {requirements.map((skill, index) => (
                             <p
                                 key={index}
-                                class="badge badge-outline hover:text-primaryLight"
+                                className="badge badge-outline hover:text-primaryLight"
                             >
                                 {skill}
                             </p>
@@ -68,8 +68,8 @@ const JobCard = ({ job }) => {
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center gap-2">
-                    <p class="font-medium text-primaryLight">
+                <div className="flex justify-between items-center gap-2">
+                    <p className="font-medium text-primaryLight">
                         Salary: {salaryRange.min} - {salaryRange.max}{" "}
                         {salaryRange.currency}
                     </p>

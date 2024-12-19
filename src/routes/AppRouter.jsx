@@ -6,6 +6,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Auth/Register";
 import Signin from "../pages/Auth/Signin";
 import Jobdetails from "../pages/Jobs/Jobdetails";
+import ProtectedRoute from "./ProtectedRoute";
 
 const AppRouter = createBrowserRouter([
     {
@@ -18,7 +19,11 @@ const AppRouter = createBrowserRouter([
             },
             {
                 path: "jobs/:id",
-                element: <Jobdetails />,
+                element: (
+                    <ProtectedRoute>
+                        <Jobdetails />
+                    </ProtectedRoute>
+                ),
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/jobs/${params.id}`),
             },
