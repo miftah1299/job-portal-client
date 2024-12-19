@@ -5,6 +5,7 @@ import NotFound from "../pages/NotFound/NotFound";
 import AuthLayout from "../layouts/AuthLayout";
 import Register from "../pages/Auth/Register";
 import Signin from "../pages/Auth/Signin";
+import Jobdetails from "../pages/Jobs/Jobdetails";
 
 const AppRouter = createBrowserRouter([
     {
@@ -14,6 +15,12 @@ const AppRouter = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "jobs/:id",
+                element: <Jobdetails />,
+                loader: ({ params }) =>
+                    fetch(`http://localhost:5000/jobs/${params.id}`),
             },
         ],
     },
@@ -26,15 +33,15 @@ const AppRouter = createBrowserRouter([
                 element: <Register />,
             },
             {
-                path: 'signin',
-                element: <Signin />
-            }
+                path: "signin",
+                element: <Signin />,
+            },
         ],
     },
     {
         path: "*",
         element: <NotFound />,
-    }
+    },
 ]);
 
 export default AppRouter;
