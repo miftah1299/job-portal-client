@@ -2,9 +2,11 @@ import React from "react";
 import { GoClock } from "react-icons/go";
 import { GrLocation } from "react-icons/gr";
 import { TfiBag } from "react-icons/tfi";
+import { Link } from "react-router-dom";
 
 const JobCard = ({ job }) => {
     const {
+        _id,
         title,
         company,
         company_logo,
@@ -55,9 +57,12 @@ const JobCard = ({ job }) => {
                     <p class="text-sm text-gray-600">{description}</p>
 
                     <div class="flex flex-wrap gap-2">
-                        {requirements.map((req) => (
-                            <p class="badge badge-outline hover:text-primaryLight">
-                                {req}
+                        {requirements.map((skill, index) => (
+                            <p
+                                key={index}
+                                class="badge badge-outline hover:text-primaryLight"
+                            >
+                                {skill}
                             </p>
                         ))}
                     </div>
@@ -68,9 +73,12 @@ const JobCard = ({ job }) => {
                         Salary: {salaryRange.min} - {salaryRange.max}{" "}
                         {salaryRange.currency}
                     </p>
-                    <button class="btn btn-sm bg-gray-300 text-primaryLight rounded-lg">
+                    <Link
+                        to={`jobs/${_id}`}
+                        className="btn btn-sm bg-gray-300 text-primaryLight rounded-lg"
+                    >
                         Apply Now
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>
