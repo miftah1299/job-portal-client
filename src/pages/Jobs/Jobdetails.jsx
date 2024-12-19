@@ -1,8 +1,9 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const Jobdetails = () => {
     const {
+        _id,
         title,
         company,
         company_logo,
@@ -74,9 +75,12 @@ const Jobdetails = () => {
                 <strong>HR Contact:</strong> {hr_name} ({hr_email})
             </p>
 
-            <button className="btn btn-sm bg-gray-300 text-primaryLight rounded-lg">
+            <Link
+                to={`/jobs/apply/${_id}`}
+                className="btn btn-sm bg-gray-300 text-primaryLight rounded-lg"
+            >
                 Apply Now
-            </button>
+            </Link>
         </div>
     );
 };
