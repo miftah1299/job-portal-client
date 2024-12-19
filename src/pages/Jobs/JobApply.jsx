@@ -4,11 +4,25 @@ import { useLoaderData } from "react-router-dom";
 const JobApply = () => {
     const { title } = useLoaderData();
 
+    const handleJobApply = (e) => {
+        e.preventDefault();
+
+        const form = e.target;
+        const linkedin = form.linkedin.value;
+        const github = form.github.value;
+        const resume = form.resume.value;
+        const coverLetter = form.coverLetter.value;
+
+        console.log({ linkedin, github, resume, coverLetter });
+    };
+
     return (
         <div className="py-20 bg-background">
             <div className="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold mb-4">Apply for {title}</h1>
-                <form>
+                <h1 className="text-2xl text-primaryLight font-bold mb-4">
+                    Apply for {title}
+                </h1>
+                <form onSubmit={handleJobApply}>
                     <div className="mb-4">
                         <label
                             className="block text-sm font-medium mb-2"
