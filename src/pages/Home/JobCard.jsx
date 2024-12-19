@@ -47,7 +47,8 @@ const JobCard = ({ job }) => {
                             {jobType}
                         </span>
                         <span className="flex gap-1 items-center">
-                            <GoClock />4 minutes ago
+                            <GoClock />
+                            {applicationDeadline}
                         </span>
                     </p>
 
