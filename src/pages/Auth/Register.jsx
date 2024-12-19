@@ -1,14 +1,16 @@
 import Lottie from "lottie-react";
 import React, { useContext, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerAnimation from "../../assets/lottie/register.json";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
+import { nav } from "motion/react-client";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const [error, setError] = useState({});
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
@@ -36,6 +38,7 @@ const Register = () => {
             .then((userCredential) => {
                 const user = userCredential.user;
                 // console.log(user);
+                navigate("/");
             })
             .catch((error) => {
                 // const errorCode = error.code;
