@@ -1,5 +1,5 @@
 import React from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
 
@@ -8,6 +8,7 @@ const JobApply = () => {
     const { _id, title } = useLoaderData();
     // const { id } = useParams();
     // console.log({ user, _id, title, id });
+    const navigate = useNavigate();
 
     const handleJobApplication = (e) => {
         e.preventDefault();
@@ -46,6 +47,7 @@ const JobApply = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
+                    navigate("/my-applications");
                 }
             })
             .catch((error) => {
