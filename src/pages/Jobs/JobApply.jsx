@@ -1,8 +1,9 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const JobApply = () => {
     const { title } = useLoaderData();
+    const { id } = useParams();
 
     const handleJobApply = (e) => {
         e.preventDefault();
@@ -12,10 +13,17 @@ const JobApply = () => {
         const github = form.github.value;
         const resume = form.resume.value;
         const coverLetter = form.coverLetter.value;
-
-        console.log({ linkedin, github, resume, coverLetter });
+        // console.log({ linkedin, github, resume, coverLetter });
+        const jobApplication = {
+            job_id: id,
+            application_email: UserActivation.email,
+            linkedin,
+            github,
+            resume,
+            coverLetter,
+        };
     };
-
+    
     return (
         <div className="py-20 bg-background">
             <div className="max-w-2xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
