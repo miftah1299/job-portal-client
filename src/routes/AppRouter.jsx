@@ -8,6 +8,7 @@ import Signin from "../pages/Auth/Signin";
 import Jobdetails from "../pages/Jobs/Jobdetails";
 import ProtectedRoute from "./ProtectedRoute";
 import JobApply from "../pages/Jobs/JobApply";
+import MyApplications from "../pages/Jobs/MyApplications";
 
 const AppRouter = createBrowserRouter([
     {
@@ -37,6 +38,14 @@ const AppRouter = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(`http://localhost:5000/jobs/${params.id}`),
+            },
+            {
+                path: "/my-applications",
+                element: (
+                    <ProtectedRoute>
+                        <MyApplications />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
