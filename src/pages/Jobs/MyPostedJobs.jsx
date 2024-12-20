@@ -69,9 +69,12 @@ const MyPostedJobs = () => {
                             <p>
                                 <strong>Status:</strong> {job.status}
                             </p>
-                            <button className="btn bg-secondary">
+                            <Link
+                                to={`/view-applications/${job._id}`}
+                                className="btn bg-secondary"
+                            >
                                 View Applications
-                            </button>
+                            </Link>
 
                             <div className="flex justify-between items-center mt-4">
                                 <Link
