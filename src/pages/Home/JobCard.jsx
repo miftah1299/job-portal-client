@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { GoClock } from "react-icons/go";
 import { GrLocation } from "react-icons/gr";
@@ -13,7 +14,7 @@ const JobCard = ({ job }) => {
         location,
         jobType,
         applicationDeadline,
-        salaryRange,
+        salaryRange = {},
         description,
         requirements,
     } = job;
@@ -28,6 +29,7 @@ const JobCard = ({ job }) => {
                                 <img src={company_logo} alt="logo" />
                             </div>
                         </div>
+                        {/* Company Name and Location */}
                         <div>
                             <h2 className="font-semibold text-lg">{company}</h2>
                             <p className="text-sm text-gray-500 flex items-center gap-1">
@@ -37,10 +39,11 @@ const JobCard = ({ job }) => {
                         </div>
                     </div>
                     <div>
-                        <span className="badge badge-success badge-sm">✔</span>
+                        <span className="badge badge-success badge-sm">✔️</span>
                     </div>
                 </div>
 
+                {/* Job Details */}
                 <div className="space-y-2">
                     <h3 className="text-xl font-semibold">{title}</h3>
                     <p className="text-sm text-gray-500 flex items-center gap-5">
@@ -56,20 +59,23 @@ const JobCard = ({ job }) => {
 
                     <p className="text-sm text-gray-600">{description}</p>
 
+                    {/* Requirements */}
                     <div className="flex flex-wrap gap-2">
-                        {requirements.map((skill, index) => (
-                            <p
-                                key={index}
-                                className="badge badge-outline hover:text-primaryLight"
-                            >
-                                {skill}
-                            </p>
-                        ))}
+                        {Array.isArray(requirements) &&
+                            requirements.map((skill, index) => (
+                                <p
+                                    key={index}
+                                    className="badge badge-outline hover:text-primaryLight"
+                                >
+                                    {skill}
+                                </p>
+                            ))}
                     </div>
                 </div>
 
+                {/* Salary and Apply Button */}
                 <div className="flex justify-between items-center gap-2">
-                    <p className="font-medium text-primaryLight">
+                    <p className="text-sm text-primaryLight">
                         Salary: {salaryRange.min} - {salaryRange.max}{" "}
                         {salaryRange.currency}
                     </p>
