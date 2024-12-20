@@ -35,12 +35,12 @@ const Navbar = () => {
                 My Applications
             </NavLink>
             <NavLink
-                to="/contact"
+                to="/add-job"
                 className={({ isActive }) =>
                     `tab ${isActive ? "text-accent" : "hover:text-accent"}`
                 }
             >
-                Contact
+                Add New Job
             </NavLink>
         </>
     );
