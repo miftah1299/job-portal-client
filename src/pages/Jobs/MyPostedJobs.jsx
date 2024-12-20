@@ -7,15 +7,14 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 const MyPostedJobs = () => {
     const { user } = useAuth();
     const [jobs, setJobs] = useState([]);
+    console.log(jobs);
 
     useEffect(() => {
-        if (user) {
-            fetch(`http://localhost:5000/jobs?postedBy=${user.email}`)
-                .then((res) => res.json())
-                .then((data) => setJobs(data))
-                .catch((error) => console.error("Error:", error));
-        }
-    }, [user]);
+        fetch(`http://localhost:5000/jobs?email=${user.email}`)
+            .then((res) => res.json())
+            .then((data) => setJobs(data))
+            .catch((error) => console.error("Error:", error));
+    }, [user.email]);
 
     const handleDeleteJob = (id) => {
         Swal.fire({
@@ -89,6 +88,12 @@ const MyPostedJobs = () => {
             ) : (
                 <p>No jobs posted.</p>
             )}
+
+            <div className="mt-4">
+                <Link to="/add-job" className="btn bg-primaryLight text-white">
+                    Add Job
+                </Link>
+            </div>
         </div>
     );
 };

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const AddJob = () => {
+    const { user } = useAuth();
+    console.log(user);
     const [formData, setFormData] = useState({
         title: "",
         company: "",
@@ -19,8 +22,8 @@ const AddJob = () => {
         description: "",
         requirements: [],
         responsibilities: [],
-        hr_name: "",
-        hr_email: "",
+        hr_name: user?.displayName || "anonymous@example.com",
+        hr_email: user?.email || "Anonymous",
     });
 
     const navigate = useNavigate();
@@ -347,10 +350,11 @@ const AddJob = () => {
                         type="text"
                         id="hr_name"
                         name="hr_name"
-                        className="input input-bordered w-full"
-                        value={formData.hr_name}
+                        className="input input-bordered w-full bg-gray-100"
+                        value={user?.displayName || ""}
+                        // value={formData.hr_name}
                         onChange={handleChange}
-                        required
+                        readOnly
                     />
                 </div>
                 <div className="mb-4">
@@ -364,10 +368,11 @@ const AddJob = () => {
                         type="email"
                         id="hr_email"
                         name="hr_email"
-                        className="input input-bordered w-full"
-                        value={formData.hr_email}
+                        className="input input-bordered w-full bg-gray-100"
+                        value={user?.email || ""}
+                        // value={formData.hr_email}
                         onChange={handleChange}
-                        required
+                        readOnly
                     />
                 </div>
                 <button
