@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 const MyApplications = () => {
     const { user } = useAuth();
@@ -12,8 +14,43 @@ const MyApplications = () => {
             .catch((error) => console.error("Error:", error));
     }, []);
 
+    const handleDeleteApplication = (_id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/job-applications/${_id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        // console.log(data);
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Application has been deleted.",
+                                icon: "success",
+                            });
+
+                            // Update the state
+                            const updatedApplications = applications.filter(
+                                (application) => application._id !== _id
+                            );
+                            setApplications(updatedApplications);
+                        }
+                    });
+            }
+        });
+    };
+
     return (
-        <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
+        <div className="max-w-screen-xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
             <h1 className="text-2xl text-primaryLight font-bold mb-4">
                 Applications: {applications.length}
             </h1>
@@ -23,7 +60,7 @@ const MyApplications = () => {
                         <table className="table">
                             {/* head */}
                             <thead>
-                                <tr>
+                                <tr className="text-lg text-primaryDark">
                                     <th>Company</th>
                                     <th>Job</th>
                                     <th>Job Type</th>
@@ -65,8 +102,13 @@ const MyApplications = () => {
                                         </td>
                                         <td>{application.jobType}</td>
                                         <th>
-                                            <button className="btn btn-ghost btn-xs">
-                                                details
+                                            <button
+                                                onClick={
+                                                    handleDeleteApplication
+                                                }
+                                                className="text-accent"
+                                            >
+                                                <RiDeleteBin6Line size={24} />
                                             </button>
                                         </th>
                                     </tr>
