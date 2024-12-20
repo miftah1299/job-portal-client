@@ -17,6 +17,36 @@ const MyPostedJobs = () => {
         }
     }, [user]);
 
+    const handleDeleteJob = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/jobs/${id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire(
+                                "Deleted!",
+                                "Your job has been deleted.",
+                                "success"
+                            );
+                            setJobs(jobs.filter((job) => job._id !== id));
+                        }
+                    })
+                    .catch((error) => console.error("Error:", error));
+            }
+        });
+    };
+
     return (
         <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
             <h1 className="text-2xl font-bold mb-4">My Posted Jobs</h1>
@@ -46,7 +76,10 @@ const MyPostedJobs = () => {
                                 >
                                     View Details
                                 </Link>
-                                <button className="text-accent">
+                                <button
+                                    onClick={() => handleDeleteJob(job._id)}
+                                    className="text-accent"
+                                >
                                     <RiDeleteBin6Line size={24} />
                                 </button>
                             </div>
