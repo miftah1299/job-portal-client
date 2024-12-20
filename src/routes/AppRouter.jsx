@@ -46,6 +46,8 @@ const AppRouter = createBrowserRouter([
                         <MyApplications />
                     </ProtectedRoute>
                 ),
+                loader: () =>
+                    fetch(`http://localhost:5000/job-applications`),
             },
         ],
     },
