@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { IoBagAddOutline } from "react-icons/io5";
 
 const MyPostedJobs = () => {
     const { user } = useAuth();
@@ -68,6 +69,10 @@ const MyPostedJobs = () => {
                             <p>
                                 <strong>Status:</strong> {job.status}
                             </p>
+                            <button className="btn bg-secondary">
+                                View Applications
+                            </button>
+
                             <div className="flex justify-between items-center mt-4">
                                 <Link
                                     to={`/jobs/${job._id}`}
@@ -90,8 +95,11 @@ const MyPostedJobs = () => {
             )}
 
             <div className="mt-4">
-                <Link to="/add-job" className="btn bg-primaryLight text-white">
-                    Add Job
+                <Link
+                    to="/add-job"
+                    className="btn bg-primaryDark text-white flex"
+                >
+                    Add Job <IoBagAddOutline size={20} />
                 </Link>
             </div>
         </div>
