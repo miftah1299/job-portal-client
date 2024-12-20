@@ -25,7 +25,7 @@ const JobCard = ({ job }) => {
                     <div className="flex items-center gap-2">
                         <div className="avatar">
                             <div className="w-10 h-10 flex items-center justify-center">
-                                <img src={company_logo} alt="" />
+                                <img src={company_logo} alt="logo" />
                             </div>
                         </div>
                         <div>

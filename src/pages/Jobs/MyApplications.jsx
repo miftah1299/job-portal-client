@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
 const MyApplications = () => {
     const { user } = useAuth();
+    const { id } = useParams();
     const [applications, setApplications] = useState([]);
+    // console.log(user);
 
     useEffect(() => {
         fetch(`http://localhost:5000/job-applications?email=${user.email}`)
@@ -14,7 +17,7 @@ const MyApplications = () => {
             .catch((error) => console.error("Error:", error));
     }, []);
 
-    const handleDeleteApplication = (_id) => {
+    const handleDeleteApplication = (id) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -25,9 +28,12 @@ const MyApplications = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/job-applications/${_id}`, {
-                    method: "DELETE",
-                })
+                fetch(
+                    `http://localhost:5000/job-applications?email=${user.email}?${id}`,
+                    {
+                        method: "DELETE",
+                    }
+                )
                     .then((res) => res.json())
                     .then((data) => {
                         // console.log(data);

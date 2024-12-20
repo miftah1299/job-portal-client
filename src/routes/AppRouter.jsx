@@ -9,6 +9,7 @@ import Jobdetails from "../pages/Jobs/Jobdetails";
 import ProtectedRoute from "./ProtectedRoute";
 import JobApply from "../pages/Jobs/JobApply";
 import MyApplications from "../pages/Jobs/MyApplications";
+import AddJob from "../pages/Jobs/AddJob";
 
 const AppRouter = createBrowserRouter([
     {
@@ -30,7 +31,7 @@ const AppRouter = createBrowserRouter([
                     fetch(`http://localhost:5000/jobs/${params.id}`),
             },
             {
-                path: "/jobs-apply/:id",
+                path: "jobs-apply/:id",
                 element: (
                     <ProtectedRoute>
                         <JobApply />
@@ -40,14 +41,22 @@ const AppRouter = createBrowserRouter([
                     fetch(`http://localhost:5000/jobs/${params.id}`),
             },
             {
-                path: "/my-applications",
+                path: "my-applications",
                 element: (
                     <ProtectedRoute>
                         <MyApplications />
                     </ProtectedRoute>
                 ),
-                loader: () =>
-                    fetch(`http://localhost:5000/job-applications`),
+                // loader: ({params}) =>
+                //     fetch(`/job-applications/email=${user.email}/${params.id}`),
+            },
+            {
+                path: "add-job",
+                element: (
+                    <ProtectedRoute>
+                        <AddJob />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
