@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
+import React from "react";
+import toast from "react-hot-toast";
+import { useLoaderData } from "react-router-dom";
 
 const ViewApplications = () => {
     const applications = useLoaderData();
 
-    
+    const handleStatusUpdate = (e, id) => {
+        const data = {
+            status: e.target.value,
+        };
+        fetch(`http://localhost:5000/job-applications/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.modifiedCount) {
+                    toast.success("Status updated successfully");
+                }
+            })
+            .catch((error) => console.error("Error:", error));
+    };
 
     return (
         <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
@@ -47,7 +65,9 @@ const ViewApplications = () => {
                                 defaultValue={
                                     application.status || "Update Status"
                                 }
-                                onChange={handleStatusUpdate}
+                                onChange={(e) =>
+                                    handleStatusUpdate(e, application._id)
+                                }
                                 className="select select-bordered select-sm w-full max-w-sm"
                             >
                                 <option disabled>Select Status</option>
@@ -57,9 +77,8 @@ const ViewApplications = () => {
                                 <option value="Set Interview">
                                     Set Interview
                                 </option>
-                                <option value="Under Review">
-                                    Under Review
-                                </option>
+                                <option value="Hired">Hired</option>
+                                <option value="Rejected">Rejected</option>
                             </select>
                         </li>
                     ))}
