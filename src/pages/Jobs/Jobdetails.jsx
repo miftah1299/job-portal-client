@@ -76,7 +76,7 @@ const Jobdetails = () => {
             </p>
 
             <Link
-                to={`/jobs/apply/${_id}`}
+                to={`/jobs-apply/${_id}`}
                 className="btn btn-sm bg-gray-300 text-primaryLight rounded-lg"
             >
                 Apply Now
