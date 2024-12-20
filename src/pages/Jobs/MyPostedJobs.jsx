@@ -1,0 +1,63 @@
+import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { RiDeleteBin6Line } from "react-icons/ri";
+
+const MyPostedJobs = () => {
+    const { user } = useAuth();
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        if (user) {
+            fetch(`http://localhost:5000/jobs?postedBy=${user.email}`)
+                .then((res) => res.json())
+                .then((data) => setJobs(data))
+                .catch((error) => console.error("Error:", error));
+        }
+    }, [user]);
+
+    return (
+        <div className="max-w-4xl mx-auto p-6 bg-base-100 rounded-lg shadow-lg">
+            <h1 className="text-2xl font-bold mb-4">My Posted Jobs</h1>
+            {jobs.length > 0 ? (
+                <ul className="space-y-4">
+                    {jobs.map((job) => (
+                        <li
+                            key={job._id}
+                            className="p-4 bg-white rounded-lg shadow"
+                        >
+                            <h2 className="text-xl font-semibold">
+                                {job.title}
+                            </h2>
+                            <p>
+                                <strong>Company:</strong> {job.company}
+                            </p>
+                            <p>
+                                <strong>Location:</strong> {job.location}
+                            </p>
+                            <p>
+                                <strong>Status:</strong> {job.status}
+                            </p>
+                            <div className="flex justify-between items-center mt-4">
+                                <Link
+                                    to={`/jobs/${job._id}`}
+                                    className="btn bg-primaryLight text-white"
+                                >
+                                    View Details
+                                </Link>
+                                <button className="text-accent">
+                                    <RiDeleteBin6Line size={24} />
+                                </button>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No jobs posted.</p>
+            )}
+        </div>
+    );
+};
+
+export default MyPostedJobs;
