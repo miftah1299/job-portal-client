@@ -42,6 +42,14 @@ const Navbar = () => {
             >
                 Add New Job
             </NavLink>
+            <NavLink
+                to="/my-posted-jobs"
+                className={({ isActive }) =>
+                    `tab ${isActive ? "text-accent" : "hover:text-accent"}`
+                }
+            >
+                My Posted Jobs
+            </NavLink>
         </>
     );
 

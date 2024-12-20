@@ -10,6 +10,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import JobApply from "../pages/Jobs/JobApply";
 import MyApplications from "../pages/Jobs/MyApplications";
 import AddJob from "../pages/Jobs/AddJob";
+import MyPostedJobs from "../pages/Jobs/MyPostedJobs";
 
 const AppRouter = createBrowserRouter([
     {
@@ -58,6 +59,14 @@ const AppRouter = createBrowserRouter([
                     </ProtectedRoute>
                 ),
             },
+            {
+                path: "my-posted-jobs",
+                element: (
+                    <ProtectedRoute>
+                        <MyPostedJobs />
+                    </ProtectedRoute>
+                ),
+            }
         ],
     },
     {

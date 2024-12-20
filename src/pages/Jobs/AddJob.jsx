@@ -313,6 +313,7 @@ const AddJob = () => {
                         id="requirements"
                         name="requirements"
                         className="textarea textarea-bordered w-full"
+                        placeholder="Comma separated values"
                         value={formData.requirements}
                         onChange={handleChange}
                         required
@@ -329,6 +330,7 @@ const AddJob = () => {
                         id="responsibilities"
                         name="responsibilities"
                         className="textarea textarea-bordered w-full"
+                        placeholder="Comma separated values"
                         value={formData.responsibilities}
                         onChange={handleChange}
                         required
