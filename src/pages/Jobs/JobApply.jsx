@@ -1,10 +1,13 @@
 import React from "react";
-import toast from "react-hot-toast";
 import { useLoaderData, useParams } from "react-router-dom";
+import Swal from "sweetalert2";
+import useAuth from "../../hooks/useAuth";
 
 const JobApply = () => {
-    const { title } = useLoaderData();
-    const { id } = useParams();
+    const { user } = useAuth();
+    const { _id, title } = useLoaderData();
+    // const { id } = useParams();
+    // console.log({ user, _id, title, id });
 
     const handleJobApplication = (e) => {
         e.preventDefault();
@@ -17,8 +20,8 @@ const JobApply = () => {
         // console.log({ linkedin, github, resume, coverLetter });
 
         const jobApplication = {
-            job_id: id,
-            application_email: UserActivation.email,
+            job_id: _id,
+            application_email: user.email,
             linkedin,
             github,
             resume,
@@ -34,9 +37,16 @@ const JobApply = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-                toast.success("Application submitted successfully");
-                // form.reset();
+                // console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Application submitted successfully",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
             })
             .catch((error) => {
                 console.error("Error:", error);

@@ -29,7 +29,7 @@ const AppRouter = createBrowserRouter([
                     fetch(`http://localhost:5000/jobs/${params.id}`),
             },
             {
-                path: "/jobs/apply/:id",
+                path: "/jobs-apply/:id",
                 element: (
                     <ProtectedRoute>
                         <JobApply />
