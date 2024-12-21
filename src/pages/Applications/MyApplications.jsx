@@ -12,13 +12,13 @@ const MyApplications = () => {
     // console.log(user);
 
     useEffect(() => {
-        // fetch(`http://localhost:5000/job-applications?email=${user.email}`)
+        // fetch(`https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}`)
         //     .then((res) => res.json())
         //     .then((data) => setApplications(data))
         //     .catch((error) => console.error("Error:", error));
 
         axios
-            .get(`http://localhost:5000/job-applications?email=${user.email}`, {
+            .get(`https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}`, {
                 withCredentials: true,
             })
             .then((res) => setApplications(res.data));
@@ -36,7 +36,7 @@ const MyApplications = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(
-                    `http://localhost:5000/job-applications?email=${user.email}?${id}`,
+                    `https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}?${id}`,
                     {
                         method: "DELETE",
                     }
