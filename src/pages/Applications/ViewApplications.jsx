@@ -9,7 +9,7 @@ const ViewApplications = () => {
         const data = {
             status: e.target.value,
         };
-        fetch(`http://localhost:5000/job-applications/${id}`, {
+        fetch(`https://job-portal-server-site1.vercel.app/job-applications/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
