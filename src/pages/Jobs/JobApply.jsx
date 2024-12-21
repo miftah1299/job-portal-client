@@ -2,6 +2,7 @@ import React from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const JobApply = () => {
     const { user } = useAuth();
@@ -51,7 +52,7 @@ const JobApply = () => {
                 }
             })
             .catch((error) => {
-                console.error("Error:", error);
+                toast.error("Error:", error);
             });
     };
 
