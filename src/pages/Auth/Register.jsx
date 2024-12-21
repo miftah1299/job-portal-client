@@ -5,7 +5,6 @@ import registerAnimation from "../../assets/lottie/register.json";
 import AuthContext from "../../context/AuthContext";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
-import { nav } from "motion/react-client";
 
 const Register = () => {
     const { createUser } = useContext(AuthContext);
@@ -22,7 +21,7 @@ const Register = () => {
         const email = formData.email.value;
         const password = formData.password.value;
         const name = formData.name.value;
-        const photo = formData.photo.value;
+        const photo = formData.photoUrl.value;
 
         // validate password
         if (!passwordPattern.test(password)) {
@@ -84,16 +83,21 @@ const Register = () => {
                         {/* photo */}
                         <label className="label">
                             <span className="label-text font-semibold">
-                                Photo URl
+                                Photo URL
                             </span>
                         </label>
                         <input
-                            type="text"
-                            name="photo"
+                            type="url"
+                            name="photoUrl"
                             placeholder="Enter your photo URL"
                             className="input input-bordered"
                             required
                         />
+                        {error.photoUrl && (
+                            <label className="label text-accent text-sm">
+                                {error.photoUrl}
+                            </label>
+                        )}
                         {/* email */}
                         <label className="label">
                             <span className="label-text font-semibold">
