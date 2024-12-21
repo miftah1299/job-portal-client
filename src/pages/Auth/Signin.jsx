@@ -25,13 +25,17 @@ const Signin = () => {
         signinUser(email, password)
             .then((userCredential) => {
                 // Signed in
-                // const userData = userCredential.userData;
-                // console.log(userData);
+                const userData = userCredential.userData;
+                console.log(userData);
 
                 const user = { email: email };
-                axios.post("http://localhost:5000/jwt", user).then((res) => {
-                    console.log(res.data);
-                });
+                axios
+                    .post("http://localhost:5000/jwt", user, {
+                        withCredentials: true,
+                    })
+                    .then((res) => {
+                        console.log(res.data);
+                    });
 
                 toast.success(`Welcome back, ${user?.displayName}!`);
                 navigate(location?.state ? location.state : "/");
