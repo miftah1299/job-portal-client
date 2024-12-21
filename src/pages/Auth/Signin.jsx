@@ -1,14 +1,14 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
-import AuthContext from "../../context/AuthContext";
+import { data, Link, useLocation, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Lottie from "lottie-react";
 import signinAnimation from "../../assets/lottie/signin.json";
-import { FcGoogle } from "react-icons/fc";
 import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
+import useAuth from "../../hooks/useAuth";
+import axios from "axios";
 
 const Signin = () => {
-    const { signinUser } = useContext(AuthContext);
+    const { signinUser } = useAuth();
     const [error, setError] = useState(null);
 
     const location = useLocation();
@@ -25,8 +25,15 @@ const Signin = () => {
         signinUser(email, password)
             .then((userCredential) => {
                 // Signed in
-                const user = userCredential.user;
-                // console.log(user);
+                // const userData = userCredential.userData;
+                // console.log(userData);
+
+                const user = { email: email };
+                axios.post("http://localhost:5000/jwt", user).then((data) => {
+                    console.log(data);
+                });
+
+                toast.success(`Welcome back, ${user?.displayName}!`);
                 navigate(location?.state ? location.state : "/");
             })
             .catch((err) => {
