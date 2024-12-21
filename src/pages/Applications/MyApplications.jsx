@@ -21,7 +21,7 @@ const MyApplications = () => {
             .get(`http://localhost:5000/job-applications?email=${user.email}`, {
                 withCredentials: true,
             })
-            .then((res) => res.data);
+            .then((res) => setApplications(res.data));
     }, [user.email]);
 
     const handleDeleteApplication = (id) => {
