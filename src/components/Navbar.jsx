@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import logo from "../assets/job-portal-logo.png";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
     const { user, signoutUser } = useContext(AuthContext);
@@ -9,10 +10,10 @@ const Navbar = () => {
     const handleSignout = () => {
         signoutUser()
             .then(() => {
-                console.log("Signed out successfully");
+                toast.success("Signed out successfully");
             })
             .catch((error) => {
-                console.log(error.message);
+                toast.error(error.message);
             });
     };
 
