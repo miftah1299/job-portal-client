@@ -29,8 +29,8 @@ const Signin = () => {
                 // console.log(userData);
 
                 const user = { email: email };
-                axios.post("http://localhost:5000/jwt", user).then((data) => {
-                    console.log(data);
+                axios.post("http://localhost:5000/jwt", user).then((res) => {
+                    console.log(res.data);
                 });
 
                 toast.success(`Welcome back, ${user?.displayName}!`);
