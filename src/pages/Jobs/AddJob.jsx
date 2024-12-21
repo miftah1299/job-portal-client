@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 
 const AddJob = () => {
     const { user } = useAuth();
-    console.log(user);
+    // console.log(user);
     const [formData, setFormData] = useState({
         title: "",
         company: "",

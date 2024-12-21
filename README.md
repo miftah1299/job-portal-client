@@ -7,6 +7,7 @@
 -   [Installation](#installation)
 -   [Usage](#usage)
 -   [Technologies Used](#technologies-used)
+-   [Live Link](#live-link)
 
 ## Introduction
 
@@ -60,3 +61,7 @@ Once the development server is running, you can access the application at `http:
 -   Tailwind CSS
 -   DaisyUI
 -   React Router
+
+## Live Link
+
+Live link: [JobPortal](https://job-portal-cd467.web.app/)

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { IoBagAddOutline } from "react-icons/io5";
+import toast from "react-hot-toast";
 
 const MyPostedJobs = () => {
     const { user } = useAuth();
@@ -14,7 +15,7 @@ const MyPostedJobs = () => {
         fetch(`http://localhost:5000/jobs?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => setJobs(data))
-            .catch((error) => console.error("Error:", error));
+            .catch((error) => toast.error("Error:", error));
     }, [user.email]);
 
     const handleDeleteJob = (id) => {
