@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const MyApplications = () => {
     const { user } = useAuth();
@@ -11,11 +12,17 @@ const MyApplications = () => {
     // console.log(user);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/job-applications?email=${user.email}`)
-            .then((res) => res.json())
-            .then((data) => setApplications(data))
-            .catch((error) => console.error("Error:", error));
-    }, []);
+        // fetch(`http://localhost:5000/job-applications?email=${user.email}`)
+        //     .then((res) => res.json())
+        //     .then((data) => setApplications(data))
+        //     .catch((error) => console.error("Error:", error));
+
+        axios
+            .get(`http://localhost:5000/job-applications?email=${user.email}`, {
+                withCredentials: true,
+            })
+            .then((res) => res.data);
+    }, [user.email]);
 
     const handleDeleteApplication = (id) => {
         Swal.fire({
