@@ -30,7 +30,7 @@ const Signin = () => {
 
                 const user = { email: email };
                 axios
-                    .post("http://localhost:5000/jwt", user, {
+                    .post("https://jobportal-server-side.vercel.app/jwt", user, {
                         withCredentials: true,
                     })
                     .then((res) => {
