@@ -12,16 +12,17 @@ const MyApplications = () => {
     // console.log(user);
 
     useEffect(() => {
-        // fetch(`https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}`)
+        // fetch(`https://jobportal-server-side.vercel.app/job-applications?email=${user.email}`)
         //     .then((res) => res.json())
         //     .then((data) => setApplications(data))
         //     .catch((error) => console.error("Error:", error));
 
         axios
-            .get(`https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}`, {
+            .get(`https://jobportal-server-side.vercel.app/job-applications?email=${user.email}`, {
                 withCredentials: true,
             })
-            .then((res) => setApplications(res.data));
+            .then((res) => setApplications(res.data))
+            .catch((error) => console.error("Error:", error));
     }, [user.email]);
 
     const handleDeleteApplication = (id) => {
@@ -35,9 +36,7 @@ const MyApplications = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(
-                    `https://job-portal-server-site1.vercel.app/job-applications?email=${user.email}?${id}`,
-                    {
+                fetch(`https://jobportal-server-side.vercel.app/job-applications?email=${user.email}?${id}`,{
                         method: "DELETE",
                     }
                 )
