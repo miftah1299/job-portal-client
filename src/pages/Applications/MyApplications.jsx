@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import useAxiosSecure from "../../hooks/useAxios";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const MyApplications = () => {
     const { user } = useAuth();
@@ -16,14 +16,14 @@ const MyApplications = () => {
 
     useEffect(() => {
         //* Using fetch
-        // fetch(`http://localhost:5000/job-applications?email=${user.email}`)
+        // fetch(`https://jobportal-server-side.vercel.app/job-applications?email=${user.email}`)
         //     .then((res) => res.json())
         //     .then((data) => setApplications(data))
         //     .catch((error) => console.error("Error:", error));
 
         //* Using axios
         // axios
-        //     .get(`http://localhost:5000/job-applications?email=${user.email}`, {
+        //     .get(`https://jobportal-server-side.vercel.app/job-applications?email=${user.email}`, {
         //         withCredentials: true,
         //     })
         //     .then((res) => setApplications(res.data))
@@ -33,7 +33,7 @@ const MyApplications = () => {
         axiosSecure
             .get(`/job-applications?email=${user.email}`)
             .then((res) => setApplications(res.data));
-    }, [user.email]);
+    }, [user.email, axiosSecure]);
 
     const handleDeleteApplication = (id) => {
         Swal.fire({
@@ -46,33 +46,23 @@ const MyApplications = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(
-                    `http://localhost:5000/job-applications?email=${user.email}?${id}`,
-                    {
-                        method: "DELETE",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(data),
-                    }
-                )
-                    .then((res) => res.json())
-                    .then((data) => {
-                        // console.log(data);
-                        if (data.deletedCount > 0) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your Application has been deleted.",
-                                icon: "success",
-                            });
-
-                            // Update the state
-                            const updatedApplications = applications.filter(
-                                (application) => application._id !== _id
+                axiosSecure
+                    .delete(`/job-applications/${id}`)
+                    .then((res) => {
+                        if (res.data.deletedCount > 0) {
+                            Swal.fire(
+                                "Deleted!",
+                                "Your application has been deleted.",
+                                "success"
                             );
-                            setApplications(updatedApplications);
+                            setApplications(
+                                applications.filter(
+                                    (application) => application._id !== id
+                                )
+                            );
                         }
-                    });
+                    })
+                    .catch((error) => console.error("Error:", error));
             }
         });
     };
