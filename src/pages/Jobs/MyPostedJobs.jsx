@@ -12,7 +12,7 @@ const MyPostedJobs = () => {
     console.log(jobs);
 
     useEffect(() => {
-        fetch(`https://jobportal-server-side.vercel.app/jobs?email=${user.email}`)
+        fetch(`http://localhost:5000/jobs?email=${user.email}`)
             .then((res) => res.json())
             .then((data) => setJobs(data))
             .catch((error) => toast.error("Error:", error));
@@ -29,7 +29,7 @@ const MyPostedJobs = () => {
             confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://jobportal-server-side.vercel.app/jobs/${id}`, {
+                fetch(`http://localhost:5000/jobs/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => res.json())
