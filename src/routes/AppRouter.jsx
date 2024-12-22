@@ -30,7 +30,7 @@ const AppRouter = createBrowserRouter([
                     </ProtectedRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`https://jobportal-server-side.vercel.app/jobs/${params.id}`),
+                    fetch(`http://localhost:5000/jobs/${params.id}`),
             },
             {
                 path: "jobs-apply/:id",
@@ -40,7 +40,7 @@ const AppRouter = createBrowserRouter([
                     </ProtectedRoute>
                 ),
                 loader: ({ params }) =>
-                    fetch(`https://jobportal-server-side.vercel.app/jobs/${params.id}`),
+                    fetch(`http://localhost:5000/jobs/${params.id}`),
             },
             {
                 path: "my-applications",
@@ -77,7 +77,7 @@ const AppRouter = createBrowserRouter([
                 ),
                 loader: ({ params }) =>
                     fetch(
-                        `https://jobportal-server-side.vercel.app/job-applications/jobs/${params.job_id}`
+                        `http://localhost:5000/job-applications/jobs/${params.job_id}`
                     ),
             },
         ],

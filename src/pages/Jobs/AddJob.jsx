@@ -61,7 +61,7 @@ const AddJob = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("https://jobportal-server-side.vercel.app/jobs", {
+        fetch("http://localhost:5000/jobs", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
