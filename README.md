@@ -47,7 +47,7 @@ To get started with the project, follow these steps:
 
 5. Start the development server:
     ```sh
-    npm start
+    npm run dev
     ```
 
 ## Usage
@@ -56,11 +56,10 @@ Once the development server is running, you can access the application at `http:
 
 ## Technologies Used
 
--   React
--   Firebase
 -   Tailwind CSS
 -   DaisyUI
 -   React Router
+-   Firebase
 
 ## Live Link
 
