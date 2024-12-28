@@ -53,9 +53,9 @@ const Banner = () => {
                         For You!
                     </motion.h1>
                     <p className="py-6">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut
-                        assumenda excepturi exercitationem quasi. In deleniti
-                        eaque aut repudiandae et a id nisi.
+                        We provide the best job opportunities for you. You can
+                        find the best job that suits your skills and interests.
+                        Get started now!
                     </p>
                     <button className="btn bg-primaryDark text-white hover:bg-primaryLight">
                         Get Started
