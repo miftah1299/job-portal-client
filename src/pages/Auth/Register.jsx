@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import GoogleLogin from "../../components/GoogleLogin";
 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const { createUser, setUser, updateUserProfile } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -36,8 +36,15 @@ const Register = () => {
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                // console.log(user);
-                navigate("/");
+                setUser(user);
+                updateUserProfile({ displayName: name, photoURL: photo })
+                    .then(() => {
+                        toast.success("User created successfully");
+                        navigate("/");
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    });
             })
             .catch((error) => {
                 // const errorCode = error.code;

@@ -19,7 +19,7 @@ const JobCard = ({ job }) => {
         requirements,
     } = job;
 
-    const truncateDescription = (text, wordLimit) => {
+    const truncateText = (text, wordLimit) => {
         const words = text.split(" ");
         if (words.length > wordLimit) {
             return words.slice(0, wordLimit).join(" ") + "...";
@@ -42,7 +42,7 @@ const JobCard = ({ job }) => {
                             <h2 className="font-semibold text-lg">{company}</h2>
                             <p className="text-sm text-gray-500 flex items-center gap-1">
                                 <GrLocation />
-                                {location}
+                                {truncateText(location, 5)}
                             </p>
                         </div>
                     </div>
@@ -66,11 +66,11 @@ const JobCard = ({ job }) => {
                     </p>
 
                     <p className="text-sm text-gray-600">
-                        {truncateDescription(description, 15)}
+                        {truncateText(description, 15)}
                     </p>
 
                     {/* Requirements */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-wrap gap-2 overflow-scroll">
                         {Array.isArray(requirements) &&
                             requirements.map((skill, index) => (
                                 <p

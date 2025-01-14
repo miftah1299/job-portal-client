@@ -5,6 +5,7 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
+    updateProfile,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { auth, googleProvider } from "../firebase/firebaseConfig";
@@ -34,6 +35,13 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
 
+    const updateUserProfile = async (profile) => {
+        if (auth.currentUser) {
+            await updateProfile(auth.currentUser, profile);
+            setUser({ ...auth.currentUser, ...profile });
+        }
+    };
+
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
             setUser(currentUser);
@@ -42,9 +50,13 @@ const AuthProvider = ({ children }) => {
                 const user = { email: currentUser.email };
 
                 axios
-                    .post("https://jobportal-server-side.vercel.app/jwt", user, {
-                        withCredentials: true,
-                    })
+                    .post(
+                        "https://jobportal-server-side.vercel.app/jwt",
+                        user,
+                        {
+                            withCredentials: true,
+                        }
+                    )
                     .then((res) => {
                         console.log("login", res.data);
                         setLoading(false);
@@ -69,11 +81,13 @@ const AuthProvider = ({ children }) => {
 
     const authInfo = {
         user,
+        setUser,
         loading,
         createUser,
         signinUser,
         signinWithGoogle,
         signoutUser,
+        updateUserProfile,
     };
 
     return (
