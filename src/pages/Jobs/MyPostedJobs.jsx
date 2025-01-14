@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 const MyPostedJobs = () => {
     const { user } = useAuth();
     const [jobs, setJobs] = useState([]);
-    console.log(jobs);
+    // console.log(jobs);
 
     useEffect(() => {
         fetch(`https://jobportal-server-side.vercel.app/jobs?email=${user.email}`)
